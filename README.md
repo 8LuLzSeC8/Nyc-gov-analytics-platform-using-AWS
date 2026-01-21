@@ -98,7 +98,7 @@ This provides complete traceability of every dataset.
 - Business users access trusted, governed data
 
 ## Data Model (ERD)
-<img src="docs/images/erd.png" width="900" />
+<img src="docs/images/ERD.png" width="900" />
 
 
 
