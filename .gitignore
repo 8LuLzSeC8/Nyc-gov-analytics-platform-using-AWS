@@ -1,0 +1,25 @@
+# -----------------------
+# Terraform
+# -----------------------
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+crash.log
+*.tfplan
+
+# Keep lock file tracked
+!**/.terraform.lock.hcl
+
+# Build artifacts
+**/.build/
+**/build/
+**/*.zip
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / IDE
+.vscode/
+.DS_Store
+Thumbs.db
