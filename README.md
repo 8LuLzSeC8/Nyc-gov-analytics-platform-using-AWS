@@ -1,5 +1,8 @@
 # NYC Taxi Governed Data Platform
 
+## Architecture
+<img src="docs/images/architecture.png" width="900" />
+
 ## Overview
 
 This repository contains an end-to-end **governed data platform** built on AWS, designed to demonstrate how enterprise-grade data engineering systems manage **data quality, approvals, lineage, and analytics readiness**.
@@ -8,7 +11,7 @@ The platform follows a **raw → validated → curated** data lifecycle and incl
 
 This project is intended for demonstration and presentation purposes and mirrors real-world patterns used in regulated data environments.
 
----
+
 
 ## High-Level Flow
 
@@ -20,7 +23,7 @@ Master data (zones, vendors, rate codes) is steward-controlled and must be appro
 ### 2. Transactional Data Processing
 Trip data is validated, enriched using approved master data, and curated for analytics.
 
----
+
 
 ## End-to-End Pipeline Flow
 
@@ -29,7 +32,7 @@ Trip data is validated, enriched using approved master data, and curated for ana
 - Data is stored exactly as received, without transformations
 - Raw data is immutable and retained for audit purposes
 
----
+
 
 ### Step 2: Master Data Stewardship
 - Master data is loaded into a relational store for review
@@ -39,7 +42,7 @@ Trip data is validated, enriched using approved master data, and curated for ana
 
 This ensures only steward-approved master data can be used downstream.
 
----
+
 
 ### Step 3: Freshness & Approval Gate
 - A pipeline execution begins with a freshness check on the latest master snapshot
@@ -48,7 +51,7 @@ This ensures only steward-approved master data can be used downstream.
 
 This prevents analytics from using outdated reference data.
 
----
+
 
 ### Step 4: Raw → Validated (Quality Enforcement)
 - Raw trip data is processed by a Glue job
@@ -58,7 +61,7 @@ This prevents analytics from using outdated reference data.
 
 This creates a clean, standardized version of transactional data.
 
----
+
 
 ### Step 5: Validated → Curated (Enrichment)
 - Validated trip data is enriched using the latest golden master snapshot
@@ -68,7 +71,7 @@ This creates a clean, standardized version of transactional data.
 
 This layer is optimized for analytics and reporting.
 
----
+
 
 ### Step 6: Data Quality Validation
 - Quality metrics are generated during enrichment
@@ -76,7 +79,7 @@ This layer is optimized for analytics and reporting.
 - The pipeline succeeds or fails based on data quality
 - All results are logged for audit and governance review
 
----
+
 
 ### Step 7: Audit & Lineage
 - Each pipeline execution is logged with start and end status
@@ -86,7 +89,7 @@ This layer is optimized for analytics and reporting.
 
 This provides complete traceability of every dataset.
 
----
+
 
 ### Step 8: Analytics Enablement
 - Curated data is loaded into analytical stores
@@ -94,7 +97,10 @@ This provides complete traceability of every dataset.
 - Dashboards are created using curated data only
 - Business users access trusted, governed data
 
----
+## Data Model (ERD)
+<img src="docs/images/erd.png" width="900" />
+
+
 
 ## Governance Principles
 
@@ -107,7 +113,7 @@ This platform demonstrates the following enterprise governance principles:
 - **Audit-first design** for compliance
 - **Least privilege access** for all workloads
 
----
+
 
 ## Why This Matters
 
@@ -121,7 +127,7 @@ In real organizations, data pipelines must be:
 
 This project shows how those requirements can be implemented using modern cloud-native services while keeping the system scalable and maintainable.
 
----
+
 
 ## Repository Structure (Logical)
 

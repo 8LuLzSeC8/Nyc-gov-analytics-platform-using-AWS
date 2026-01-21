@@ -8,6 +8,7 @@ from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from awsglue.job import Job
 from pyspark.sql import functions as F
+from pyspark.sql.functions import broadcast
 
 
 # ----------------------------
@@ -206,8 +207,8 @@ do = zones.select(
 )
 
 enriched = (trips
-    .join(pu, on="pulocationid", how="left")
-    .join(do, on="dolocationid", how="left")
+    .join(broadcast(pu), on="pulocationid", how="left")
+    .join(broadcast(do), on="dolocationid", how="left")
 )
 
 # 7) Output curated
