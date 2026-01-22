@@ -13,7 +13,7 @@ This project is intended for demonstration and presentation purposes and mirrors
 
 
 
-## High-Level Flow
+## AWS Architecture Flow
 
 <img src="docs/images/aws architecture.png" width="900" />
 
@@ -50,7 +50,7 @@ Curated data is loaded into Redshift and Quicksight for analytics
 This ensures only steward-approved master data can be used downstream.
 
 
-## Step Function
+### Step Function
 <img src="docs/images/stepfunction.png" width="900" />
 
 ### Step 3: Freshness & Approval Gate
@@ -98,7 +98,7 @@ This layer is optimized for analytics and reporting.
 
 This provides complete traceability of every dataset.
 
-## Cloudwatch Dashboard
+### Cloudwatch Dashboard
 <img src="docs/images/cloudwatch.png" width="900" />
 
 
@@ -110,11 +110,16 @@ This provides complete traceability of every dataset.
 - Dashboards are created using curated data only
 - Business users access trusted, governed data
 
-## Data Model (ERD)
+### Data Model (ERD)
 <img src="docs/images/ERD.png" width="900" />
 
-## QuickSight Dashboard
+### QuickSight Dashboard
 <img src="docs/images/quicksight.png" width="900" />
+
+## Security and CI/CD
+- Created least privilage IAM roles and policies for aws services
+- AWS secrets manager to create key secrets for RDS
+- Deployed the services to AWS using Terraform and Github Actions
 
 
 ## Governance Principles
@@ -127,20 +132,6 @@ This platform demonstrates the following enterprise governance principles:
 - **Immutable snapshots** for reproducibility
 - **Audit-first design** for compliance
 - **Least privilege access** for all workloads
-
-
-
-## Why This Matters
-
-In real organizations, data pipelines must be:
-
-- Explainable
-- Auditable
-- Trustworthy
-- Governed
-- Reproducible
-
-This project shows how those requirements can be implemented using modern cloud-native services while keeping the system scalable and maintainable.
 
 
 
