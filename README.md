@@ -51,7 +51,7 @@ This ensures only steward-approved master data can be used downstream.
 
 
 ### Step Function
-<img src="docs/images/stepfunction.png" width="900" />
+<img src="docs/images/stepfunction.png" width="900" height="900" />
 
 ### Step 3: Freshness & Approval Gate
 - A pipeline execution begins with a freshness check on the latest master snapshot
