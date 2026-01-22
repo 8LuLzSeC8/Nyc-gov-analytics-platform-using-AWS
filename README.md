@@ -15,13 +15,18 @@ This project is intended for demonstration and presentation purposes and mirrors
 
 ## High-Level Flow
 
-The platform operates in two main phases:
+<img src="docs/images/aws architecture.png" width="900" />
+
+The platform operates in three main phases:
 
 ### 1. Master Data Governance
 Master data (zones, vendors, rate codes) is steward-controlled and must be approved before use.
 
 ### 2. Transactional Data Processing
 Trip data is validated, enriched using approved master data, and curated for analytics.
+
+### 2. Downstream Analytics
+Curated data is loaded into Redshift and Quicksight for analytics
 
 
 
@@ -31,10 +36,12 @@ Trip data is validated, enriched using approved master data, and curated for ana
 - Raw master data and trip data are ingested into the **raw layer**
 - Data is stored exactly as received, without transformations
 - Raw data is immutable and retained for audit purposes
+- The file upload triggers an event and updates the steward for master data flow
 
 
 
 ### Step 2: Master Data Stewardship
+- The Event takes the data in the file and applies matching logics(Levenstien) and uploads data to RDS
 - Master data is loaded into a relational store for review
 - Steward applies corrections, resolves duplicates, and approves changes
 - Approved records become **golden records**
@@ -43,6 +50,8 @@ Trip data is validated, enriched using approved master data, and curated for ana
 This ensures only steward-approved master data can be used downstream.
 
 
+## Step Function
+<img src="docs/images/stepfunction.png" width="900" />
 
 ### Step 3: Freshness & Approval Gate
 - A pipeline execution begins with a freshness check on the latest master snapshot
@@ -89,10 +98,14 @@ This layer is optimized for analytics and reporting.
 
 This provides complete traceability of every dataset.
 
+## Cloudwatch Dashboard
+<img src="docs/images/cloudwatch.png" width="900" />
+
 
 
 ### Step 8: Analytics Enablement
 - Curated data is loaded into analytical stores
+- Loaded into redshift using COPY command and Glue data catalog external tables 
 - Dimension and fact models are built
 - Dashboards are created using curated data only
 - Business users access trusted, governed data
@@ -100,6 +113,8 @@ This provides complete traceability of every dataset.
 ## Data Model (ERD)
 <img src="docs/images/ERD.png" width="900" />
 
+## QuickSight Dashboard
+<img src="docs/images/quicksight.png" width="900" />
 
 
 ## Governance Principles
